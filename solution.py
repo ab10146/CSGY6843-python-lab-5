@@ -112,11 +112,14 @@ def get_route(hostname):
                 continue
 
             else:
-                #Fetch the icmp type from the IP packet
+                # icmpType, icmpCode, chksum, icmpID, seq = struct.unpack("bbHHh", recvPacket[20:28])
+                # print("\nPACKET: (type: " + str(icmpType) + "; code: " + str(icmpCode) + "; checksum: " + str(chksum)
+                      # + "; id: " + str(icmpID) + "; seq: " + str(seq) + ")\n")
+                # Fetch the icmp type from the IP packet
                 types = struct.unpack("b", recvPacket[20:21])[0]
-                try: #try to fetch the hostname
+                try: # try to fetch the hostname
                     name, _, _ = gethostbyaddr(addr[0])
-                except herror:   #if the host does not provide a hostname
+                except herror:   # if the host does not provide a hostname
                     name = "hostname not returnable"
 
                 if types == 11:
@@ -158,12 +161,9 @@ def get_route(hostname):
             finally:
                 mySocket.close()
 
-    # Nested list of [hop number, roundtrip time (rtt), host ip, and the hostname]
-    return tracelist2
-
 if __name__ == '__main__':
     routes = get_route("google.co.il")
-    for route in routes:
-        print(route)
-    # get_route("yahoo.com")
-    # get_route("www.nyu.edu")
+    # routes = get_route("yahoo.com")
+    # routes = get_route("www.nyu.edu")
+    # for route in routes:
+        # print(route)
