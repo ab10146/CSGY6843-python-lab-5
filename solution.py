@@ -162,7 +162,7 @@ def get_route(hostname):
                 mySocket.close()
 
 if __name__ == '__main__':
-    routes = get_route("google.co.il")
+    get_route("google.co.il")
     # routes = get_route("yahoo.com")
     # routes = get_route("www.nyu.edu")
     # for route in routes:
