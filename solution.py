@@ -149,7 +149,7 @@ def get_route(hostname):
                         tracelist1.append(hostname)
                         tracelist2.append(tracelist1)
                         return tracelist2
-
+                    print("Didnt pass host check: ", name)
                     tracelist1.append(name)
                     tracelist2.append(tracelist1)
                     tracelist1 = []
@@ -160,6 +160,8 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
+    return tracelist2
+
 
 if __name__ == '__main__':
     get_route("google.co.il")
