@@ -115,11 +115,12 @@ def get_route(hostname):
                 # icmpType, icmpCode, chksum, icmpID, seq = struct.unpack("bbHHh", recvPacket[20:28])
                 # print("\nPACKET: (type: " + str(icmpType) + "; code: " + str(icmpCode) + "; checksum: " + str(chksum)
                       # + "; id: " + str(icmpID) + "; seq: " + str(seq) + ")\n")
+                    
                 # Fetch the icmp type from the IP packet
                 types = struct.unpack("b", recvPacket[20:21])[0]
-                try: # try to fetch the hostname
+                try:  # try to fetch the hostname
                     name, _, _ = gethostbyaddr(addr[0])
-                except herror:   # if the host does not provide a hostname
+                except herror:  # if the host does not provide a hostname
                     name = "hostname not returnable"
 
                 if types == 11:
@@ -149,7 +150,7 @@ def get_route(hostname):
                         tracelist1.append(hostname)
                         tracelist2.append(tracelist1)
                         return tracelist2
-                    print("Didnt pass host check: ", name)
+                    # print("Didnt pass host check: ", name)
                     tracelist1.append(name)
                     tracelist2.append(tracelist1)
                     tracelist1 = []
